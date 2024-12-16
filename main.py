@@ -27,14 +27,12 @@ def upload():
     if form.validate_on_submit():
         file = form.file.data
         try:
-            # Caminho completo para salvar o arquivo
             save_path = os.path.join(
                 os.path.abspath(os.path.dirname(__file__)),
                 app.config['UPLOAD_FOLDER'],
                 secure_filename(file.filename)
             )
             
-            # Tenta salvar o arquivo
             file.save(save_path)
             flash("File has been uploaded successfully!", "success")
         except Exception as e:
