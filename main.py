@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_wtf import FlaskForm
-from flask_wtf.csrf import CSRFProtect
 from wtforms import FileField, SubmitField
 from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
@@ -17,9 +16,6 @@ app.config['UPLOAD_FOLDER'] = os.getenv("FOLDER_PATH")
 class UploadFileForm(FlaskForm):
     file = FileField("File", validators=[InputRequired()])
     submit = SubmitField("Upload File")
-
-# Não aplicaremos CSRF em formulários específicos para APIs
-app.config['WTF_CSRF_ENABLED'] = False
 
 @app.route('/', methods=['GET'])
 def home():
