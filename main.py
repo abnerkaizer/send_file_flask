@@ -19,7 +19,7 @@ class UploadFileForm(FlaskForm):
 def home():
     return '<h1>Flask Send File<h1>'
 
-@app.route('/uploud', methods=['GET', 'POST'])
+@app.route('/uploud', methods=['POST'])
 def uploud():
     form = UploadFileForm()
     if form.validate_on_submit():
