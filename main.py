@@ -15,9 +15,12 @@ class UploadFileForm(FlaskForm):
     file = FileField("File", validators=[InputRequired()])
     submit = SubmitField("Upload File")
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/home', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def home():
+    return '<h1>Flask Send File<h1>'
+
+@app.route('/uploud', methods=['GET', 'POST'])
+def uploud():
     form = UploadFileForm()
     if form.validate_on_submit():
         file = form.file.data
@@ -34,7 +37,7 @@ def home():
             flash("File has been uploaded successfully!", "success")
         except Exception as e:
             flash(f"Error during file upload: {str(e)}", "danger")
-        return redirect(url_for('home'))
+        return redirect(url_for('uploud'))
     else:
         if form.errors:
             flash("Failed to upload file. Please try again.", "danger")
